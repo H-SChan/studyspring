@@ -35,7 +35,6 @@ public class MemberController {
         System.out.println("이름 : " + member.getName());
         
         memberService.join(member);
-        
         return "redirect:/";
     }
     
