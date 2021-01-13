@@ -24,6 +24,7 @@ public class MemberController {
     
     @Autowired //memberService를 스프링이 컨테이너의 memberService를 가져와 '연결'시켜줌
     public MemberController(MemberService memberService) {
+        
         this.memberService = memberService;
     }
     
@@ -35,6 +36,7 @@ public class MemberController {
         System.out.println("이름 : " + member.getName());
         
         memberService.join(member);
+        
         return "redirect:/";
     }
     
@@ -42,6 +44,7 @@ public class MemberController {
     public String list(Model model) {
         List<Member> members = memberService.findMembers();
         model.addAttribute("members", members);
+        
         return "members/memberList";
     }
 }

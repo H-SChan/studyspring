@@ -127,7 +127,9 @@ public class JdbcMemberRepository implements MemberRepository {
             conn = getConnection();
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, name);
+            
             rs = pstmt.executeQuery();
+            
             if (rs.next()) {
                 Member member = new Member();
                 member.setId(rs.getLong("id"));
