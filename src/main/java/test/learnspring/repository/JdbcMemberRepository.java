@@ -14,6 +14,7 @@ public class JdbcMemberRepository implements MemberRepository {
     private final DataSource dataSource;
     
     public JdbcMemberRepository(DataSource dataSource) {
+        
         this.dataSource = dataSource;
     }
     
@@ -93,9 +94,11 @@ public class JdbcMemberRepository implements MemberRepository {
     @Override
     public List<Member> findAll() {
         String sql = "select * from member";
+        
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
+        
         try {
             conn = getConnection();
             pstmt = conn.prepareStatement(sql);
@@ -120,9 +123,11 @@ public class JdbcMemberRepository implements MemberRepository {
     @Override
     public Optional<Member> findByName(String name) {
         String sql = "select * from member where name = ?";
+        
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
+        
         try {
             conn = getConnection();
             pstmt = conn.prepareStatement(sql);
