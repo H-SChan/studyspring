@@ -161,6 +161,7 @@ public class JdbcMemberRepository implements MemberRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        
         try {
             if (pstmt != null) {
                 pstmt.close();
@@ -168,6 +169,7 @@ public class JdbcMemberRepository implements MemberRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        
         try {
             if (conn != null) {
                 close(conn);
