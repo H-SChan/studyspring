@@ -2,6 +2,7 @@ package test.learnspring.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import test.learnspring.controller.MemberForm;
 import test.learnspring.domain.Member;
 import test.learnspring.repository.MemberRepository;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 //직접 스프링 빈 등록을 위해 주석 @Service// 이것이 Service일줄 알고 컨테이너에 등록함
+@Transactional//JPA를 쓰기위해 항상 있어야함 데이터를  저장하고 변경할때는 항상 있어야
 public class MemberService {
     
     private final MemberRepository memberRepository;
@@ -23,11 +25,13 @@ public class MemberService {
     
     /*회원가입*/
     public Long join(Member member) {
-        //같은 이름이 있는 중복 회원은 안된다
-        validateDuplicateMember(member);
-        
-        memberRepository.save(member);
-        return member.getId();
+
+            //같은 이름이 있는 중복 회원은 안된다
+            validateDuplicateMember(member);
+
+            memberRepository.save(member);
+            return member.getId();
+
     }
     
     private void validateDuplicateMember(Member member) { //회원이름 중복 확인
